@@ -6,6 +6,10 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 
 
@@ -14,11 +18,13 @@ fun HomeScreen(
     modifier: Modifier = Modifier,
     onAddWordClick: (String) -> Unit
 ) {
+    var currentString by remember { mutableStateOf("") }
+
     Column(
         modifier = modifier.fillMaxWidth()
     ) {
             OutlinedTextField(
-            value = "",
+            value = currentString,
             onValueChange = {},
             readOnly = true,
             label = {
@@ -29,7 +35,7 @@ fun HomeScreen(
 
         Button(
             onClick = {
-                onAddWordClick("")
+                onAddWordClick(currentString)
             },
             modifier = Modifier.fillMaxWidth()
         ) {
